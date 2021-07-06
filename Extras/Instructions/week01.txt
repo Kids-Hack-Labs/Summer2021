@@ -1,0 +1,63 @@
+Kids Hack Labs
+Summer 2021
+Week 01 - Review
+
+Task:
+Implement a simple Snowman-style game
+
+Specifications:
+The game must run in its own class. *The class must be in its own file*
+The game loop must take into account the following game mechanics:
+=> The game's input method must be case-insensitive; that is, it does "A" and
+    "a" should be considered the same character for the purposes of letter
+    guesses.
+=> The game must display the word with the completed letters before every
+    player guess. Not-yet-guessed should display as an underscore "_".
+=> The game must let the player know when they already chose a character.
+    Repeatedly-guessed characters must not deduct from the player's guesses,
+    regardless of their being correct or not.
+=> The game must update the chosen letters: if the letter is in the word, the
+    word should be printed with the revealed characters at the beginning of
+    the next round.
+=> At the end of the game, the player should know whether the game was won or
+    lost. Print a message with the game's outcome.
+
+File contents:
+    main.py file:
+        The main file will import the Game class and define the application
+        main entry point. It must also implement the driver code.
+    
+    game.py file:
+        This file has the bulk of our program. It must begin with importing
+        the math and random modules. Following the imports, the Game class
+        must be created. The initializer should have a list of possible words,
+        an attribute to hold the chosen word, an attribute to hold the list of
+        characters to be revealed in the word, an attribute to hold the list
+        of characters the player has already typed, an attribute to hold the
+        maximum number of guesses the player will have, an attribute to track
+        how many guesses were already made, and an attribute to track the game
+        state; that is, the current win/loss condition.
+        
+        The game class must also have a run() method that will hold the main
+        game loop. The loop is fairly straightforward:
+        
+        Print a greeting to inform the player that the game started
+        while the game isn't won or lost:
+            display the revealed characters
+            collect player input
+            check whether the player's input is repeated:
+                if it isn't, add it to the used characters list
+                if it is, message the player and skip the current round
+            if the player's input is in the word:
+                replace the "_" characters in the character list with the
+                player's input
+                
+                if the character list has no "_" characters left:
+                   set the game state tracker so that the game is won
+            
+            otherwise:
+                change the coutner to account for the player's wrong guess
+                print a message saying how many guesses the player has left
+        
+        At the game's end (this is *not* part of the game loop!):
+        Check if the game was won and print the correct message to the user
