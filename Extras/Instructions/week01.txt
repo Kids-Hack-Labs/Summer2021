@@ -37,6 +37,8 @@ File contents:
         maximum number of guesses the player will have, an attribute to track
         how many guesses were already made, and an attribute to track the game
         state; that is, the current win/loss condition.
+        The inializer should also seed the random number generator and choose a
+        word from the word pool.
         
         The game class must also have a run() method that will hold the main
         game loop. The loop is fairly straightforward:
@@ -56,7 +58,7 @@ File contents:
                    set the game state tracker so that the game is won
             
             otherwise:
-                change the coutner to account for the player's wrong guess
+                change the counter to account for the player's wrong guess
                 print a message saying how many guesses the player has left
         
         At the game's end (this is *not* part of the game loop!):
