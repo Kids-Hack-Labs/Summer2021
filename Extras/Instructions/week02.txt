@@ -1,0 +1,108 @@
+Kids Hack Labs
+Summer 2021
+Week 02 - Review
+
+Task:
+Begin Pacman implementation by adding its image and frames. Animate the end
+result.
+
+Breakdown:
+Download all the files from GitHub at 
+https://github.com/Kids-Hack-Labs/Summer2021. Unzip it somewhere you will be
+able to find easily.
+
+Go to https://codepen.io/herculesdc/pen/Vwbeopa and click on the lower part of
+the screen. It should ask you to save an image called "pacmanFrames.png". Save
+that image in the assets folder of the unzipped GitHub folder structure.
+
+Open the pacman.py file inside the src folder.
+
+Begin by importing the Rect class from the pygame module
+Import the rotate function from pygame's transform submodule
+Import the get_pressed function from pygame.key submodule
+Import the constants K_UP, K_DOWN, K_LEFT and K_RIGHT from pygame's locals
+submodule
+
+Create the Pacman class.
+    In the class's initializer:
+        import the load function from pygame's image submodule
+        
+        create an attribute to hold the Surface loaded with the load() 
+        function. When loading the image, remember that you need to provide
+        the image's filepath and filename as input.
+        
+        create an attribute to hold the number of frames in our image. This
+        attribute is the quotient of our image's width by its height.
+        
+        create an attribute to store how big each frame is. Pacman is a round
+        character, so we can assume that each frame's width and height are
+        equal. This means that each frame is square and we can use a simple
+        integer to store that value. The value itself is our image's height.
+        
+        create an attribute to store our pacman collision. This is a Rect-
+        type variable, and it should be initialized to 200, 200, the frame's
+        side and the frame's side (yes, it is repeated because Rects are
+        created using 4 values)
+        
+        create an attribute to store our current frame index. Initialize it to
+        zero
+        create an attribute to store out frame speed change. Set it to one
+        create an attribute to store our frame timer. Set it to 100
+        create an attribute to store our current time. Set it to 100
+        
+        create an attribute to store our character's direction
+        
+    Create the start method.
+        this function should return True for now
+    
+    Create the update method. It should take delta as an argument.
+        create a temporary variable to store the pressed keys. Assign the
+        result of a call to get_pressed to this variable
+        
+        create a variable to store UP key presses. Assign it the value of the
+        pressed keys variable at K_UP.
+        create a variable to store DOWN key presses. Assign it the value of
+        the pressed keys variable at K_DOWN.
+        create a variable to store LEFT key presses. Assign it the value of
+        the pressed keys variable at K_LEFT.
+        create a variable to store RIGHT key presses. Assign it the value of
+        the pressed keys variable at K_RIGHT.
+        
+        if the up key is pressed:
+            set the direction attribute to 3
+        else if the down key is pressed:
+            set the direction attribute to 1
+        else if the left left is pressed:
+            set the direction attribute to 0
+        else if the right key is pressed:
+            set the direction attribute to 2
+            
+        call the animate method. Remember to pass delta as an argument
+        
+    Create the render method. It should take target as an argument.
+        create a temporary surface variable. Assign it the result of a call to
+        rotate() with the image attribute and 90 degrees multiplied by the
+        direction attribute as arguments.
+        
+        create a temporary rect variable. The initializer (for now) should be
+        ((direction is even) times the current frame index times the side of
+        the current frame, (direction is odd) times the current frame index
+        times the side of the current frame, the frame's side, the frame's
+        side)
+        
+        blit the temporary surface to the screen, using the attribute rect to
+        position the character and the temporary rectangle to set the clip
+        area
+    
+    Create the animate method. This method should take delta as an argument
+        decrease the current timer attribute by delta
+        
+        if the current time attribute is less than zero:
+            add the frame timer attribute to the current time attribute
+            
+            add the frame speed to the current index
+            
+            if the current index attribute is less than or equal to zero or
+            the current index attribute is greater than or equal to the frame
+            amount attribute minus one:
+                multiply the frame speed attribute by -1
