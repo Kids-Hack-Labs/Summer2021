@@ -106,3 +106,23 @@ Create the Pacman class.
             the current index attribute is greater than or equal to the frame
             amount attribute minus one:
                 multiply the frame speed attribute by -1
+                
+
+Open the scene.py file in the src folder. At the very beginning of the file,
+import the Pacman class from the src folder's pacman file.
+
+Inside the Scene class:
+    inside the class's initializer:
+        create a pacman attribute and set it to a Pacman-type variable
+    
+    in the class's start method:
+        return the result of a call to the pacman's start() method
+        
+    in the class's update method:
+        call the pacman attribute's update() method. Do not forget to pass
+        delta as an argument
+    
+    in the render method:
+        fill the target with black
+        call the render method on the pacman attribute. Do not forget to pass
+        target as an argument
