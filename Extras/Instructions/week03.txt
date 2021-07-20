@@ -60,7 +60,7 @@ add an import of the Level class from the src folder's level file.
 
 Inside the Scene class:
     inside the class's initializer:
-        create an attribute to store the level data and set it to a Level-type
+        add an attribute to store the level data and set it to a Level-type
         variable.
     
     in the class's start method:
@@ -68,18 +68,13 @@ Inside the Scene class:
         result of a call to the level's start() method.
         
     in the class's update method:
-        call the level attribute's update() method. Do not forget to pass
-        delta as an argument
-        
-        call the pacman attribute's update() method. Do not forget to pass
-        delta as an argument
+        add a call to the level attribute's update() method. Do not forget to
+        pass delta as an argument
     
     in the render method:
-        call the render method on the level attribute. Do not forget to pass
-        target as an argument
-        
-        call the render method on the pacman attribute. Do not forget to pass
-        target as an argument
+        add a call to the render method on the level attribute. Do not forget
+        to pass target as an argument
+        *NOTE: the level must be rendered BEFORE the Pacman
 
 **CHALLENGE**
 Implement Pacman movement: Open the pacman.py file and make pacman move. 
