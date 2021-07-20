@@ -1,0 +1,87 @@
+Kids Hack Labs
+Summer 2021
+Week 02 - Level Data - Graphics
+
+Task:
+Implement the level's graphical layout using a single Surface, a JSON file,
+and the pygame.draw.lines() function.
+
+Breakdown:
+You're expected to continue work from where we left off last week. This week's
+GitHub does not have the updated code from last week. You were given PDF files
+with the answers, an it is your responsibility from now on to update your own
+code.
+
+Download the leveldata.json file available at 
+https://drive.google.com/drive/folders/16svOJB7qdu8AJgpj6ZFbQ1ABuaNGy6B7?usp=sharing
+Place the json file in the game's assets folder.
+
+Navigate to the src folder and create a file named level.py inside it.
+
+Open the level.py file:
+
+Create the Level class.
+    In the class's initializer:
+        import the Surface class from pygame
+        
+        create a Surface attribute 520px wide and 650px tall
+        
+        open the leveldata.json file. NOTES: remember to provide the correct
+        filepath, and remember to alias the file so you can access it later
+            
+            import the json module
+            
+            create a temporary variable to hold the json data. Set it to the
+            data loaded from the json file.
+            
+            fill the surface attribute with black
+            
+            import the lines function from pygame's draw submodule
+            
+            for every key in the json data:
+                call the lines() function. Remember to pass the surface
+                attribute, set the colour to blue (using a simple 3-element
+                tuple), set the "closed" attribute to True, pass the data
+                dict's value that matches the key, and set line width to 2.
+                *If you have questions, remember to read the pygame docs page*
+        
+    Create the start method.
+        this method should return that the surface attribute is valid (that
+        is, that the surface attribute isn't None)
+    
+    Create the update method. It should take delta as an argument.
+        this method should only pass for now
+        
+    Create the render method. It should take target as an argument.
+        blit the surface attribute to the target at (0,0)
+        
+Open the scene.py file in the src folder. At the very beginning of the file,
+add an import of the Level class from the src folder's level file.
+
+Inside the Scene class:
+    inside the class's initializer:
+        create an attribute to store the level data and set it to a Level-type
+        variable.
+    
+    in the class's start method:
+        return the result of a call to the pacman's start() method *and* the
+        result of a call to the level's start() method.
+        
+    in the class's update method:
+        call the level attribute's update() method. Do not forget to pass
+        delta as an argument
+        
+        call the pacman attribute's update() method. Do not forget to pass
+        delta as an argument
+    
+    in the render method:
+        call the render method on the level attribute. Do not forget to pass
+        target as an argument
+        
+        call the render method on the pacman attribute. Do not forget to pass
+        target as an argument
+
+**CHALLENGE**
+Implement Pacman movement: Open the pacman.py file and make pacman move. 
+Movement must be continuous; that is: pacman starts the game moving and does
+not stop. If Pacman goes off-screen, he should reappear from the other side.
