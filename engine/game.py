@@ -26,7 +26,7 @@ class Game():
             self.is_run = False
             
             #screenshot functionality
-            self.flag_shot = False
+            #self.flag_shot = False
             #screenshot end
 
         def start(self):
@@ -50,9 +50,9 @@ class Game():
             #target.fill((200, 200, 200))
             self.scene.render(target)
             #Screenshot
-            if self.flag_shot:
-                pygame.image.save(target, "snake.png")
-                self.flag_shot = False
+            # if self.flag_shot:
+                # pygame.image.save(target, "snake.png")
+                # self.flag_shot = False
             #Screenshot end
             pygame.display.flip()
                     

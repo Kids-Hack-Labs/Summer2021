@@ -1,0 +1,130 @@
+Kids Hack Labs
+Summer 2021
+Week 04 - Level Data - Nodes
+
+Task:
+Implement the level's Navigation Node layout. Modify the necessary files to
+use this layout.
+
+Breakdown:
+Today's code includes changes in the pacman.py file. We are doing this to
+standardize all our game code and movement.
+
+You will also be required to implement the Node class, the NodeGraph class and
+adjust our Scene class.
+
+Download the nodeinfo.json file available at 
+https://drive.google.com/drive/folders/16svOJB7qdu8AJgpj6ZFbQ1ABuaNGy6B7?usp=sharing
+Place the json file in the game's assets folder.
+
+Navigate to the src folder and create a file named node.py inside it.
+
+Open the node.py file:
+
+Create the Node class.
+    The class's initializer should take another argument apart from self. Its
+    name is data:
+        create an attribute to store the node's name. Set it to data at 0
+        
+        create an attribute to store the node's coordinates. Set it to data at
+        1 at "coords"
+        
+        create an attribute to store the node's link names. Set it to data at
+        1 at "links"
+        
+        create an attribute to store the node's connections. Set it to a list
+        with four None items
+        
+    Create a method called get_connection() that takes one argument aside from
+    self.
+        if the argument's value is between 0 and 3:
+            return the connections's list at argument
+    
+    Create a get_name() method that returns the Node's name
+    
+    Create a get_coords() method that returns the Node's coordinates
+
+
+Create a new file in the same folder and name it graph.py. Inside it, import
+the Node class from the node file (remember that node is in the src folder)
+
+Create the Graph class
+    In the Graph's initializer:
+        create an attribute to store graph data. Set it to an empty dictionary
+        
+        with the json file opened and aliased:
+            import the load function from the json module
+            
+            create a temporary variable to store the loaded json
+            for each item in the temporary variable's items:
+                assign a new Node (created with item as an argument) to a
+                graph data attribute key. Use item at zero as the graph data
+                attribute key
+        
+        for each key in the graph data attribute:
+            for every link in the range of the length of links of the data
+            attribute at key:
+                if the data attribute at key's links at link is not None:
+                    set the data attribute at key's connects at link to the
+                    data attribute at the data attribute at key's links at
+                    link
+                    
+    Create a has_data() method that takes no arguments aside from self.
+        This method simply returns that the data attribute's length isn't zero
+    
+    Create a get_next() method that takes two arguments, at and direction,
+    aside from self:
+        if at is in the data attribute's keys:
+            reutrn the result of a call to get_connection() on the data
+            attribute at at. Do not forget to use direction as an argument
+            
+    Create a get_at() method that takes an argument, at, aside from self:
+        if at is in the data attribute's keys:
+            return the data attribute at at
+            
+Open the pacman.py file in the src folder. Let's start the changes there:
+    In the initializer:
+        After the direction attribute, create  attributes for the current and
+        the next nodes
+        
+    In the update method:
+        *Change* the directions for up and down. Up should be set to 1, and
+        down should be set to 3
+    
+    In the render method:
+        *Change*: In the rotate call, add a minus sign in front of the 90
+    
+    Create a method called set_start() that takes an argument besides self:
+        set the current node attribute to the argument
+        set the pacman's rect's center to the result of a call to the node
+        attribute's get_coords() method.
+        
+    Create a set_next() method that takes an argument besides self:
+        set the next node attribute to the argument
+    
+Open the scene.py file in the src folder. At the very beginning of the file,
+add an import of the Graph class from the src folder's graph file.
+
+Inside the Scene class:
+    inside the class's initializer:
+        add an attribute to store the graph data and set it to a Graph-type
+        variable.
+        
+        call the pacman's set_start() method. Pass the graph data's "HS" node
+        as an argument to the function call.
+        
+        call the pacman's set_next() method. Pass the graph data's "HS" left
+        node using its get_connection() method with 0 as an argument.
+    
+    in the class's start method:
+        return the result of a call to the pacman's start() method *and* the
+        result of a call to the level's start() method.
+        
+    in the class's update method:
+        add a call to the level attribute's update() method. Do not forget to
+        pass delta as an argument
+    
+    in the render method:
+        add a call to the render method on the level attribute. Do not forget
+        to pass target as an argument
+        *NOTE: the level must be rendered BEFORE the Pacman
